@@ -16,6 +16,16 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+//using the cors
+app.use(cors ( {
+  origin: [
+    'http://localhost:4000',
+    'https://dashboard-two-green-46.vercel.app/dashboard'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
+
 // Connect to MongoDB
 connectDB();
 

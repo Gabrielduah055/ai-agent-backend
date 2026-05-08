@@ -63,4 +63,19 @@ router.get('/leads', async (req: Request, res: Response) => {
   }
 });
 
+router.put('/leads/:id/status', async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const lead = await Leads.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+    res.json(lead);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update lead status' });
+  }
+});
+
 export default router;

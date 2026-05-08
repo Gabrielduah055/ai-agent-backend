@@ -16,18 +16,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 //using the cors
 app.use(cors ( {
-  origin: [
-    'http://localhost:4000',
-    'https://dashboard-two-green-46.vercel.app/dashboard'
-  ],
+  origin: ['*'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+app.use(express.urlencoded({ extended: false }));
 
 // Add this after your existing routes
 app.use('/api/whatsapp', whatsappRoutes);

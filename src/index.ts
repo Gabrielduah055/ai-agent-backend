@@ -20,7 +20,11 @@ app.use(express.json());
 
 //using the cors
 app.use(cors ( {
-  origin: ['*'],
+  origin: [
+    'http://localhost:4200',
+    'http://localhost:4000',
+    'https://dashboard-two-green-46.vercel.app' 
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))

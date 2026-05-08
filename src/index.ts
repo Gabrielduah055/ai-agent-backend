@@ -3,6 +3,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import chatRoutes from './routes/chats';
+import whatsappRoutes from './routes/whatsapp';
+
+
 import dns from "node:dns/promises";
 
 dns.setServers(["8.8.8.8", "1.1.1.1"])
@@ -25,6 +28,9 @@ app.use(cors ( {
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+// Add this after your existing routes
+app.use('/api/whatsapp', whatsappRoutes);
 
 // Connect to MongoDB
 connectDB();

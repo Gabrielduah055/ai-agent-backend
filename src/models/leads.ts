@@ -35,6 +35,9 @@ const LeadSchema: Schema = new Schema({
     enum: ['new', 'contacted', 'qualified', 'booked', 'closed'],
     default: 'new'
   },
+  source: { type: String, default: 'whatsapp' }, // whatsapp or prospecting
+  location: { type: String, default: '' },
+  currency: { type: String, default: '$' },
   createdAt: { type: Date, default: Date.now }
 });
 

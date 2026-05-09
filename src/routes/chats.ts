@@ -1,6 +1,7 @@
 import { Router} from 'express';
 import type { Request, Response } from 'express';
 import { chatWithIntakeAgent, extractLeadData } from '../agents/intakeAgent';
+import { runProspectingAgent } from '../agents/prospectingAgent';
 import Leads from '../models/leads';
 
 const router = Router();
@@ -76,6 +77,17 @@ router.put('/leads/:id/status', async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to update lead status' });
   }
+
+  // Trigger prospecting agent manually
+  router.post('/prospect', async (req: Request, res: Response) => {
+    try {
+      res.json({ message: 'Prospecting agent started! Check logs for progress.' });
+      // Run in background so it doesn't timeout
+      runProspectingAgent().catch(console.error);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to start prospecting agent' });
+    }
+  });
 });
 
 export default router;

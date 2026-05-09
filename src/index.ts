@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db';
 import chatRoutes from './routes/chats';
 import whatsappRoutes from './routes/whatsapp';
+import {startScheduler} from './scheduler'
 
 
 import dns from "node:dns/promises";
@@ -36,6 +37,9 @@ app.use('/api/whatsapp', whatsappRoutes);
 
 // Connect to MongoDB
 connectDB();
+
+// Start the scheduler
+startScheduler();
 
 // Routes
 app.use('/api/chat', chatRoutes);

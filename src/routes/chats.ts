@@ -77,8 +77,9 @@ router.put('/leads/:id/status', async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to update lead status' });
   }
+});
 
-  // Trigger prospecting agent manually
+ // Trigger prospecting agent manually
   router.post('/prospect', async (req: Request, res: Response) => {
     try {
       res.json({ message: 'Prospecting agent started! Check logs for progress.' });
@@ -88,6 +89,5 @@ router.put('/leads/:id/status', async (req: Request, res: Response) => {
       res.status(500).json({ error: 'Failed to start prospecting agent' });
     }
   });
-});
 
 export default router;

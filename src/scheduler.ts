@@ -3,7 +3,7 @@ import { runProspectingAgent } from './agents/prospectingAgent';
 
 export const startScheduler = (): void => {
   // Run every day at 6am
-  cron.schedule('0 6 * * *', async () => {
+  cron.schedule('* * * * *', async () => {
     console.log('⏰ Scheduled prospecting starting...');
     await runProspectingAgent();
   });
